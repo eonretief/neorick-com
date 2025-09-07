@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+@theme inline {
+    --font-raleway: var(--font-raleway);
+    --font-geist: var(--font-geist);
+}
+
+:root {
+    --background: #ffffff;
+    --foreground: #171717;
+    --color-primary-900: #131b2a;
+    --color-primary-500: #29a3dd;
+    --color-primary-50: #f8f9fa;
+    --color-neutral-900: #252525;
+    --color-neutral-700: #4a5459;
+}
+
+/* Tailwind v4: configure theme in CSS */
+@theme {
+    /* keep your choices, using rem (1rem = 16px unless you changed root font-size) */
+    --breakpoint-sm: 30rem;   /* 480px */
+    --breakpoint-md: 48rem;   /* 768px */
+    --breakpoint-lg: 64rem;   /* 1024px */
+    --breakpoint-xl: 100rem;  /* 1600px  -> was 1440px */
+    --breakpoint-2xl: 120rem; /* 1920px  (optional) */
+}
+
+@theme inline {
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-primary-900: var(--color-primary-900);
+    --color-primary-500: var(--color-primary-500);
+    --color-primary-50: var(--color-primary-50);
+
+    --color-neutral-900: var(--color-neutral-900);
+    --color-neutral-700: var(--color-neutral-700);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: #0a0a0a;
+        --foreground: #ededed;
+    }
+}
+
+body {
+    background: var(--background);
+    color: var(--foreground);
+}
+
+@layer components {
+    /* Privacy Policy List Styles */
+    .alpha-list {
+        counter-reset: alpha-counter;
+        list-style: none;
+    }
+
+    .alpha-list > li {
+        counter-increment: alpha-counter;
+        position: relative;
+        padding-left: 2rem;
+    }
+
+    .alpha-list > li::before {
+        content: counter(alpha-counter, lower-alpha) ")";
+        position: absolute;
+        left: 0;
+        font-weight: 600;
+    }
+
+    .roman-list {
+        counter-reset: roman-counter;
+        list-style: none;
+        padding-left: 2rem;
+    }
+
+    .roman-list > li {
+        counter-increment: roman-counter;
+        position: relative;
+        padding-left: 2rem;
+    }
+
+    .roman-list > li::before {
+        content: counter(roman-counter, lower-roman) ")";
+        position: absolute;
+        left: 0;
+        font-weight: 500;
+    }
+
+    .numeric-list {
+        counter-reset: numeric-counter;
+        list-style: none;
+        padding-left: 2rem;
+    }
+
+    .numeric-list > li {
+        counter-increment: numeric-counter;
+        position: relative;
+        padding-left: 2.5rem;
+    }
+
+    .numeric-list > li::before {
+        content: "(" counter(numeric-counter) ")";
+        position: absolute;
+        left: 0;
+        font-weight: 500;
+    }
+}
